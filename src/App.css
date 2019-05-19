@@ -19,6 +19,31 @@
   color: white;
   padding-bottom: 5%;
 }
+.NegotiateButton {
+  box-shadow: 15px 15px 15px 5px #80808014;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  transition: transform 0.4s;
+  margin: auto;
+  width: 125px;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  height: 70px;
+}
+.NegotiateButton:hover {
+  background-color: yellow;
+  transform: scale(1.05);
+}
+.TeamCard {
+  box-shadow: 15px 15px 15px 5px #80808014;
+  border-radius: 8px;
+  background-color: white;
+  transition: transform 0.2s;
+}
+.TeamCard:hover {
+  background-color: yellow;
+  transform: scale(1.05);
+}
 
 @keyframes App-logo-spin {
   from {
