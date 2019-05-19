@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Negotiate from "./components/negotiate";
+import Result from "./components/result";
+import TeamsList from "./components/teamslist";
+
+const content = {
+  width: "90%",
+  backgroundColor: "#0000009c",
+  borderRadius: "8px",
+  paddingBottom: "5%"
+};
+const appGrid = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr",
+  gridGap: "30px"
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Career Mode Money Ball</h3>
+      <div style={content}>
+        <h2>The Negotiation</h2>
+        <div style={appGrid}>
+          <TeamsList />
+          <Negotiate />
+          <Result />
+        </div>
+      </div>
     </div>
   );
 }
