@@ -28,7 +28,7 @@ export default class teamsList extends React.PureComponent {
   render() {
     return (
       <div>
-        <h3 className="gridTitle">1. Select Bidding Team</h3>
+        <h3>1. Select Bidding Team</h3>
         <div style={cardGrid}>
           {teams.map((data, index) => (
             <TeamItem
