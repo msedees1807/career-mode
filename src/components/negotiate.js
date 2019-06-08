@@ -1,23 +1,21 @@
 import React from "react";
 import "../App.css";
 
-export default class Negotiate extends React.Component {
-  state = {
-    result: null
-  };
-
+export default class Negotiate extends React.PureComponent {
   render() {
     return (
       <div>
-        <h3>2. Begin Negotiations</h3>
+        <h3 className="gridTitle">2. Begin Negotiations</h3>
         <button
           className="NegotiateButton"
           onClick={() => {
-            negotiateResult();
+            this.props.negotiateResult();
           }}
         >
-          <h4>BEGIN</h4>
+          <h4 className="NegotiateButtonText">BEGIN</h4>
         </button>
+        <h4>{this.props.buyingTeam.name}</h4>
+        {this.props.showTier && <h4>Tier: {this.props.buyingTeam.tier}</h4>}
       </div>
     );
   }
