@@ -12,15 +12,15 @@ export default class Negotiate extends React.PureComponent {
   render() {
     return (
       <div className="ResultContainer">
-        <h3 className="gridTitle">3. Result</h3>
+        <h4 className="gridTitle">3. Result</h4>
         {this.props.showTeamWarning && (
-          <h4>Select a team to begin the negotiation.</h4>
+          <p>Select a team to begin the negotiation.</p>
         )}
         <div style={resultContainer}>
           {this.props.result != null && (
-            <h2 className="ResultText">
+            <h3 className="ResultText">
               {this.props.result ? "Sell Player" : "Keep Player"}
-            </h2>
+            </h3>
           )}
         </div>
         <LoadingBarNew

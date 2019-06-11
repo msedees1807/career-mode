@@ -1,21 +1,24 @@
 import React from "react";
+import styled from "@emotion/styled";
+import { css, jsx } from "@emotion/core";
+
+import { BREAKPOINTS } from "../theme";
 import Negotiate from "./negotiate";
 import Result from "./result";
 import TeamsList from "./teamslist";
 import { teams } from "../data/teams";
 
-const negGrid = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr 1fr",
+const Container = styled.div({
+  gridTemplateColumns: "2fr 1fr 1fr",
   paddingLeft: "20px",
   paddingRight: "20px",
-  margin: "0px auto"
-};
-
-const negGridItem = {
+  margin: "0px auto",
   display: "flex",
-  alignItems: "flex-end"
-};
+  flexDirection: "column",
+  [BREAKPOINTS.medium]: {
+    display: "grid"
+  }
+});
 
 export default class negotiationHub extends React.PureComponent {
   state = {
@@ -29,13 +32,9 @@ export default class negotiationHub extends React.PureComponent {
   };
 
   negotiateResult = () => {
-    const { name, tier } = this.state.buyingTeam;
+    const { tier } = this.state.buyingTeam;
     const { percentage } = this.state;
 
-    const object = {
-      name,
-      tier
-    };
     this.setState({ result: null, percentage: 0 });
     this.loadingBar();
     setTimeout(() => {
@@ -56,7 +55,7 @@ export default class negotiationHub extends React.PureComponent {
   };
 
   loadingBar = () => {
-    console.log("CLICKEd", this);
+    console.log("CLICKED", this);
     if (this.state.percentage !== 100) {
       return this.setState({ percentage: 100 });
     }
@@ -73,13 +72,12 @@ export default class negotiationHub extends React.PureComponent {
           teams, you must use the hub to determine whether the bid is
           successful.
         </p>
-        <div style={negGrid}>
+        <Container>
           <TeamsList
             selectBuyingTeam={this.selectBuyingTeam}
-            style={negGridItem}
+            buyingTeam={this.state.buyingTeam}
           />
           <Negotiate
-            style={negGridItem}
             negotiateResult={this.negotiateResult}
             buyingTeam={this.state.buyingTeam}
             result={this.state.result}
@@ -87,12 +85,11 @@ export default class negotiationHub extends React.PureComponent {
           />
           <Result
             result={this.state.result}
-            style={negGridItem}
             percentage={this.state.percentage}
             loadingBar={this.loadingBar}
             showTeamWarning={this.state.showTeamWarning}
           />
-        </div>
+        </Container>
       </div>
     );
   }
