@@ -5,24 +5,27 @@ import "../App.css";
 import { teams } from "../data/teams";
 import { COLOURS } from "../theme";
 
-const cardGrid = {
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center"
-};
+const CardGrid = styled.div`
+   {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`;
 
 const TeamItemContainer = styled.button`
   box-shadow: 15px 15px 15px 5px #80808014;
   border-radius: 8px;
-  background-color: ${({ selected }) => (selected ? COLOURS.green : "white")};
-  color: #252525;
+  background-color: ${({ selected }) =>
+    selected ? COLOURS.green : "#ffffff52"};
+  color: ${({ selected }) => (selected ? "black" : "#ffffff")};
   font-size: 15px;
   transition: transform 0.2s;
   width: 125px;
   height: 50px;
   margin: 8px;
   &:hover {
-    background-color: #bfffbe;
+    background-color: #69ff6675;
     transform: scale(1.05);
   }
 `;
@@ -49,7 +52,7 @@ export default class teamsList extends React.PureComponent {
         `}
       >
         <h4>1. Select Bidding Team</h4>
-        <div style={cardGrid}>
+        <CardGrid>
           {teams.map((data, index) => (
             <TeamItem
               team={data}
@@ -58,7 +61,7 @@ export default class teamsList extends React.PureComponent {
               key={index}
             />
           ))}
-        </div>
+        </CardGrid>
       </div>
     );
   }

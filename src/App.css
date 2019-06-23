@@ -22,24 +22,6 @@
   padding-left: 30px;
   padding-right: 30px;
 }
-.introText {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.loadingBarContainer {
-  position: relative;
-  height: 20px;
-
-  background: lightgray;
-  border: 5px solid rgb(105, 105, 105);
-  border-radius: 25px;
-}
-.loadingBarFiller {
-  background: #53ff99fc;
-  height: 100%;
-  border-radius: inherit;
-  transition: width 3s ease-in;
-}
 
 .ResultContainer {
   padding-right: 2%;

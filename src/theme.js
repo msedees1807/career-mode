@@ -10,5 +10,6 @@ export const COLOURS = {
   secondary: "pink",
   textMain: "red",
   textSecondary: "pink",
-  green: "#53ff99fc"
+  green: "#53ff99fc",
+  white: "#ffffff"
 };
