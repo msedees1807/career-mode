@@ -83,7 +83,8 @@ export default class negotiationHub extends React.PureComponent {
 
   negotiateResult = () => {
     const { tier } = this.state.buyingTeam;
-    // const { percentage } = this.state;
+
+    const negotiationRounds = 5 - tier;
 
     // 1. check tier
     // 2. based on tier run this function x times
@@ -96,7 +97,7 @@ export default class negotiationHub extends React.PureComponent {
     this.calculateResult();
     this.loadingBar();
 
-    for (let i = 0; i < tier; i++) {
+    for (let i = 0; i < negotiationRounds; i++) {
       switch (this.state.result) {
         default:
           break;
@@ -104,11 +105,13 @@ export default class negotiationHub extends React.PureComponent {
           this.setState({
             result: "Keep Player"
           });
+          console.log("Keep");
           break;
         case false:
           this.setState({
             result: "Sell Player"
           });
+          console.log("sell");
           break;
 
         // setTimeout(() => {
@@ -123,8 +126,6 @@ export default class negotiationHub extends React.PureComponent {
         //   results: this.state.results.concat([this.state.result])
         // });
       }
-      console.log("RESULT HERE:" + this.state.result);
-      console.log("ARRAY HERE: " + this.state.results);
     }
   };
 
@@ -143,13 +144,13 @@ export default class negotiationHub extends React.PureComponent {
     // console.log("Negotiation Hub State: (Render Method called) ", this.state);
     return (
       <div>
-        <h2
+        <h3
           style={{
             display: "inline"
           }}
         >
           The Negotiation
-        </h2>
+        </h3>
         <i
           class="far fa-envelope nav-email"
           style={{
@@ -184,13 +185,13 @@ export default class negotiationHub extends React.PureComponent {
             they become successful. If you receive a bid from one of the
             following teams, you must use the hub to determine whether the bid
             is successful. We will allow a
-            <b>maximum of 5 players to leave, per season,</b> as a result of
+            <b> maximum of 5 players to leave, per season,</b> as a result of
             these negotiations. We will not stand in the way of our players'
             dream club.
             <br />
             <br />
             It is our goal to build a sustainable club by capping our spending
-            on players to <b>£25m</b> per purchase and <b>£50,000</b> per week
+            on players to <b>£30m</b> per purchase and <b>£50,000</b> per week
             on salaries for each player.
             <br />
             <br />
@@ -203,11 +204,12 @@ export default class negotiationHub extends React.PureComponent {
             <br />
             - We must sell up to 5 key players per season.
             <br />
-            - Transfers are capped at £25m and salaries at £50,000 per week.
+            - Transfers (Fee + player sign on bonus) are capped at £30m and
+            salaries at £50,000 per week.
             <br />
-            - No Youth Academy Prospects
+            - No Youth Academy Prospects.
             <br />
-            - No Free Pre Contract Signings
+            - No Free Pre Contract Signings or free agents.
             <br />
             <br />
             <b>The Board.</b>
