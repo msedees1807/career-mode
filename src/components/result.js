@@ -1,33 +1,52 @@
 import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
+import LoadingBarJames from "./loadingBarJames";
 import LoadingBar from "./loadingBar";
-import LoadingBarNew from "./newLoadingBar";
 
-const resultContainer = {
-  minWidth: "120px",
-  height: "75px",
-  display: "block"
-};
+const ResultContainer = styled.div`
+   {
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+`;
+
+const FinalResult = styled.div`
+   {
+    min-width: 120px;
+    height: 75px;
+    display: block;
+  }
+`;
 
 export default class Negotiate extends React.PureComponent {
   render() {
     return (
-      <div className="ResultContainer">
-        <h3 className="gridTitle">3. Result</h3>
-        {this.props.showTeamWarning && (
-          <h4>Select a team to begin the negotiation.</h4>
-        )}
-        <div style={resultContainer}>
-          {this.props.result != null && (
-            <h2 className="ResultText">
-              {this.props.result ? "Sell Player" : "Keep Player"}
-            </h2>
-          )}
-        </div>
-        <LoadingBarNew
+      <ResultContainer>
+        <h4 className="gridTitle">3. Result</h4>
+        <LoadingBar
           percentage={this.props.percentage}
           loadingBar={this.props.loadingBar}
         />
-      </div>
+        {this.props.showTeamWarning && (
+          <p>Select a team to begin the negotiation.</p>
+        )}
+        <FinalResult>
+          {this.props.showResult != null && (
+            <h3 className="ResultText">
+              {this.props.result ? "Sell Player" : "Keep Player"}
+            </h3>
+          )}
+        </FinalResult>
+
+        {this.props.results !== [] && (
+          <ul css={css``}>
+            {this.props.results.map((result, i) => (
+              <h3 className="ResultText">{result}</h3>
+            ))}
+          </ul>
+        )}
+      </ResultContainer>
     );
   }
 }

@@ -55,6 +55,11 @@ export const teams = [
     tier: 4
   },
   {
+    name: "Napoli",
+    rating: 5,
+    tier: 4
+  },
+  {
     name: "Arsenal",
     rating: 5,
     tier: 3
