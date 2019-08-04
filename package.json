@@ -2,6 +2,7 @@
   "name": "career-mode",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://msedees1807.github.io/career-mode/",
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",

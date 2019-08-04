@@ -31,13 +31,13 @@ export default class Negotiate extends React.PureComponent {
         {this.props.showTeamWarning && (
           <p>Select a team to begin the negotiation.</p>
         )}
-        {/* <FinalResult>
+        <FinalResult>
           {this.props.showResult != null && (
             <h3 className="ResultText">
               {this.props.result ? "Sell Player" : "Keep Player"}
             </h3>
           )}
-        </FinalResult> */}
+        </FinalResult>
 
         {this.props.results !== [] && (
           <ul css={css``}>

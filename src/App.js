@@ -29,6 +29,7 @@ function App() {
     <>
       <GlobalStlyes />
       <div className="App">
+        <div>Nav</div>
         <h3>Career Mode Money Ball</h3>
         <div style={content}>
           <NegotiationHub />
