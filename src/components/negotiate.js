@@ -15,7 +15,6 @@ const NegotiateButton = styled.button`
   font-size: 18px;
 
   &:hover {
-    background-color: #bfffbe;
     transform: scale(1.05);
   }
   &:active {
@@ -31,8 +30,9 @@ export default class Negotiate extends React.PureComponent {
           padding: 8px;
         `}
       >
-        <h4 className="gridTitle">2. Begin Negotiations</h4>
+        <p className="gridTitle">2. Begin negotiations.</p>
         <NegotiateButton
+          disabled={this.props.buyingTeam.name === ""}
           className="NegotiateButton"
           onClick={() => {
             this.props.negotiateResult();

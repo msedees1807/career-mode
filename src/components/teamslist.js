@@ -25,7 +25,7 @@ const TeamItemContainer = styled.button`
   height: 50px;
   margin: 8px;
   &:hover {
-    background-color: #69ff6675;
+    background-color: #4865f39e;
     transform: scale(1.05);
   }
 `;
@@ -51,7 +51,7 @@ export default class teamsList extends React.PureComponent {
           padding: 8px;
         `}
       >
-        <h4>1. Select Bidding Team</h4>
+        <p>1. Select bidding team.</p>
         <CardGrid>
           {teams.map((data, index) => (
             <TeamItem

@@ -23,7 +23,7 @@ export default class Negotiate extends React.PureComponent {
   render() {
     return (
       <ResultContainer>
-        <h4 className="gridTitle">3. Result</h4>
+        <p className="gridTitle">3. Result.</p>
         <LoadingBar
           percentage={this.props.percentage}
           loadingBar={this.props.loadingBar}

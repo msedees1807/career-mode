@@ -12,8 +12,8 @@ const content = {
 };
 
 const nav = {
-  backgroundColor: "#333c5ade",
-  color: "white",
+  backgroundColor: "rgba(205, 209, 224, 0.92)",
+  color: "black",
   padding: "2%",
   position: "fixed",
   width: "100%",
@@ -38,7 +38,7 @@ function App() {
   return (
     <>
       <GlobalStlyes />
-      <div style={nav}>Career Mode Money Ball</div>
+      <div style={nav}>CAREER MODE - MONEY BALL</div>
       <div className="App">
         <div style={content}>
           <NegotiationHub />
