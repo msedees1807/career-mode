@@ -51,7 +51,6 @@ export default class negotiationHub extends React.PureComponent {
 
   handleEmailOpenClose = () => {
     this.setState({ showEmail: !this.state.showEmail });
-    console.log(this.state.showEmail);
   };
 
   loadingBar = () => {
