@@ -45,7 +45,13 @@ export default class negotiationHub extends React.PureComponent {
     showResult: null,
     showTier: false,
     showTeamWarning: true,
-    percentage: 0
+    percentage: 0,
+    test: true
+  };
+
+  handleEmailOpenClose = () => {
+    this.setState({ showEmail: !this.state.showEmail });
+    console.log(this.state.showEmail);
   };
 
   loadingBar = () => {
@@ -145,9 +151,12 @@ export default class negotiationHub extends React.PureComponent {
             float: "left",
             display: "initial"
           }}
-          onClick={() => this.setState({ showEmail: true })}
+          onClick={this.handleEmailOpenClose}
         />
-        {this.state.showEmail ? <Email /> : ""}
+
+        {this.state.showEmail && (
+          <Email handleEmailOpenClose={this.handleEmailOpenClose} />
+        )}
         <Container>
           <TeamsList
             selectBuyingTeam={this.selectBuyingTeam}

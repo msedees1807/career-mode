@@ -33,7 +33,7 @@ export default class Email extends React.PureComponent {
             fontSize: "2rem",
             float: "right"
           }}
-          onClick={() => this.setState({ showEmail: false })}
+          onClick={this.props.handleEmailOpenClose}
         />
         <b>Dear Mr. Manager,</b>
         <br />

@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css } from "@emotion/core";
-import LoadingBarJames from "./loadingBarJames";
 import LoadingBar from "./loadingBar";
 
 const ResultContainer = styled.div`
@@ -33,16 +31,16 @@ export default class Negotiate extends React.PureComponent {
         )}
         <FinalResult>
           {this.props.showResult != null && (
-            <h3 className="ResultText">
+            <p className="ResultText">
               {this.props.result ? "Sell Player" : "Keep Player"}
-            </h3>
+            </p>
           )}
         </FinalResult>
 
         {this.props.results !== [] && (
-          <ul css={css``}>
-            {this.props.results.map((result, i) => (
-              <h3 className="ResultText">{result}</h3>
+          <ul>
+            {this.props.results.map(result => (
+              <p className="ResultText">{result}</p>
             ))}
           </ul>
         )}
