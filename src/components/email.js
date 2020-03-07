@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { MdClose } from "react-icons/md";
 
 const BasicText = styled.p`
    {
@@ -20,24 +21,17 @@ export default class Email extends React.PureComponent {
   render() {
     return (
       <BasicText>
-        <i
-          class="far fa-envelope"
-          style={{
-            fontSize: "2rem",
-            paddingRight: "10px"
-          }}
-        />
-        <i
-          class="fas fa-window-close"
+        <MdClose
+          className="icon"
           style={{
             fontSize: "2rem",
             float: "right"
           }}
           onClick={this.props.handleEmailOpenClose}
         />
+        <br />
         <b>Dear Mr. Manager,</b>
-        <br />
-        <br />
+        <br /> <br />
         As a small club, larger teams will often look to our players when they
         become successful. If you receive a bid from one of the following teams,
         you must use the hub to determine whether the bid is successful. We will

@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
+import MacBar from "./components/macBar"
 import NegotiationHub from "./components/negotiationhub";
+import MinimisedHub from "./components/minimisedHub";
 import { Global, css } from "@emotion/core";
 
 const content = {
@@ -8,7 +10,7 @@ const content = {
   backgroundColor: "rgba(1, 1, 2, 0.72)",
   borderRadius: "8px",
   paddingBottom: "5%",
-  marginTop: "10%"
+  marginTop: "70px"
 };
 
 const nav = {
@@ -34,18 +36,37 @@ const GlobalStlyes = () => (
   />
 );
 
-function App() {
-  return (
-    <>
-      <GlobalStlyes />
-      <div style={nav}>CAREER MODE - MONEY BALL</div>
-      <div className="App">
-        <div style={content}>
-          <NegotiationHub />
-        </div>
-      </div>
-    </>
-  );
-}
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hubMinimised: false
+    };
+  }
 
-export default App;
+  minimiseHub = () => {
+    this.setState({
+      hubMinimised: !this.state.hubMinimised
+    });
+    console.log(this.state.hubMinimised);
+  };
+
+  render() {
+    return (
+      <>
+        <GlobalStlyes />
+        <div className="App">
+          <MacBar/>
+          {!this.state.hubMinimised && (
+            <div style={content}>
+              <NegotiationHub minimiseHub={this.minimiseHub} />
+            </div>
+          )}
+          {this.state.hubMinimised && (
+            <MinimisedHub minimiseHub={this.minimiseHub} />
+          )}
+        </div>
+      </>
+    );
+  }
+}

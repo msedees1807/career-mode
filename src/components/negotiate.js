@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
+import Prestige from "./prestige";
+import Stars from "./stars";
 import "../App.css";
 
 const NegotiateButton = styled.button`
@@ -34,16 +36,15 @@ export default class Negotiate extends React.PureComponent {
         <NegotiateButton
           disabled={this.props.buyingTeam.name === ""}
           className="NegotiateButton"
-          onClick={() => {
-            this.props.negotiateResult();
-          }}
+          onClick={() => {this.props.negotiateResult();}}
         >
           NEGOTIATE
         </NegotiateButton>
-        {this.props.showTier && (
+        {this.props.showPrestige && (
           <p>{this.props.buyingTeam.name} have placed a bid.</p>
         )}
-        {this.props.showTier && <h5>Tier: {this.props.buyingTeam.tier}</h5>}
+        <Prestige prestige={this.props.buyingTeam.prestige}/>
+        {this.props.showPrestige && <Stars stars={this.props.buyingTeam.rating} />}
       </div>
     );
   }

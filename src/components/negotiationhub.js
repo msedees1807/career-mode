@@ -3,10 +3,19 @@ import styled from "@emotion/styled";
 import { css, jsx } from "@emotion/core";
 import { BREAKPOINTS } from "../theme";
 import Email from "./email";
+import TeamsList from "./teamslist";
 import Negotiate from "./negotiate";
 import Result from "./result";
-import TeamsList from "./teamslist";
+import {
+  MdCancel,
+  MdDoNotDisturbOn,
+  MdArrowDropDownCircle,
+  MdHelp,
+  MdEmail,
+  MdBatteryChargingFull
+} from "react-icons/md";
 import { teams } from "../data/teams";
+import styles from "../App.css";
 
 const Container = styled.div({
   gridTemplateColumns: "2fr 1fr 1fr",
@@ -20,30 +29,15 @@ const Container = styled.div({
   }
 });
 
-// THIS DOESNT WORK DUE TO THE BREAKPOINT
-// const Container = styled.div`
-//    {
-//     grid-template-columns: 2fr 1fr 1fr;
-//     padding-left: 20px;
-//     padding-right: 20px;
-//     margin: 0px auto;
-//     display: flex;
-//     flex-direction: column;
-//     [breakpoints.medium]: {
-//       display: grid;
-//     }
-//   }
-// `;
-
 export default class negotiationHub extends React.PureComponent {
   state = {
     userTeam: null,
     buyingTeam: { name: "" },
     results: [],
     resultMessage: null,
-    showEmail: true,
+    showEmail: false,
     showResult: null,
-    showTier: false,
+    showPrestige: false,
     showTeamWarning: true,
     percentage: 0,
     test: true
@@ -54,7 +48,6 @@ export default class negotiationHub extends React.PureComponent {
   };
 
   loadingBar = () => {
-    // console.log("LOADING BAR CALLEDS", this.state);
     setTimeout(() => {
       if (this.state.percentage !== 100) {
         this.setState({ percentage: 100 });
@@ -62,62 +55,38 @@ export default class negotiationHub extends React.PureComponent {
     }, 10);
   };
 
-  calculateResult = () => {
-    setTimeout(() => {
+  calculateResult = rounds => {
+    
+    let results = [];
+
+    for (let i = 0; i < rounds; i++) {
+      if (Math.floor(Math.random() * 2) === 0) {
+        var result = "Keep Player";
+      } else {
+        result = "Sell Player";
+      }
+      results = results.concat(result);
       this.setState({
-        result: Math.floor(Math.random() * 2) === 0,
         showResult: true,
-        results: this.state.results.concat(this.state.result)
+        results: results
       });
-    }, 3500);
+    }
   };
 
   negotiateResult = () => {
-    const { tier } = this.state.buyingTeam;
+    const { prestige } = this.state.buyingTeam;
+    const negotiationRounds = prestige;
 
-    const negotiationRounds = 5 - tier;
-
-    // 1. check tier
-    // 2. based on tier run this function x times
+    // 1. check prestige
+    // 2. based on prestige run this function x times
     // 3. added result to array
 
     this.setState({
       percentage: 0
     });
 
-    this.calculateResult();
+    this.calculateResult(negotiationRounds);
     this.loadingBar();
-
-    for (let i = 0; i < negotiationRounds; i++) {
-      switch (this.state.result) {
-        default:
-          break;
-        case true:
-          this.setState({
-            result: "Keep Player"
-          });
-          console.log("Keep");
-          break;
-        case false:
-          this.setState({
-            result: "Sell Player"
-          });
-          console.log("sell");
-          break;
-
-        // setTimeout(() => {
-        // this.setState({
-        // result: Math.floor(Math.random() * 2) === 0,
-        //   showResult: true,
-        //   results: this.state.results.concat(this.state.result)
-        // });
-        // }, 3500);
-
-        // this.setState({
-        //   results: this.state.results.concat([this.state.result])
-        // });
-      }
-    }
   };
 
   selectBuyingTeam = buyingTeam => {
@@ -125,37 +94,56 @@ export default class negotiationHub extends React.PureComponent {
       buyingTeam,
       results: [],
       showResult: null,
-      showTier: true,
+      showPrestige: true,
       showTeamWarning: false,
       percentage: 0
     });
   };
 
   render() {
-    // console.log("Negotiation Hub State: (Render Method called) ", this.state);
     return (
       <div>
-        <h4
-          style={{
-            display: "inline"
-          }}
-        >
-          NEGOTIATION HUB
-        </h4>
-        <i
-          class="far fa-envelope nav-email"
-          style={{
-            fontSize: "1.7rem",
-            padding: "24px",
-            float: "left",
-            display: "initial"
-          }}
-          onClick={this.handleEmailOpenClose}
-        />
+        <div className="header">
+          <div style={{ flexGrow: 0.5, marginLeft: "20px" }}>
+            <h5
+              style={{
+                fontSize: "1rem",
+                padding: "0px",
+                margin: "0px",
+                float: "left",
+                marginTop: "10px"
+              }}
+            >
+              <MdCancel style={{ color: "#FF605C", marginRight: "5px" }} />
+              <MdDoNotDisturbOn
+                className="iconMinimise"
+                onClick={this.props.minimiseHub}
+                style={{ marginRight: "5px" }}
+              />
+              <MdArrowDropDownCircle style={{ color: "#00CA4E" }} />
+            </h5>
+          </div>
+          <div style={{ flexGrow: 8, textAlign: "left" }}>
+            <h5>NEGOTIATION HUB</h5>
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <h5>
+              <MdHelp />
+            </h5>
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <h5>
+              <MdEmail className="icon" onClick={this.handleEmailOpenClose} />
+            </h5>
+          </div>
+          <div style={{ flexGrow: 1, marginRight: "20px" }}>
+          </div>
+        </div>
 
         {this.state.showEmail && (
           <Email handleEmailOpenClose={this.handleEmailOpenClose} />
         )}
+
         <Container>
           <TeamsList
             selectBuyingTeam={this.selectBuyingTeam}
@@ -165,7 +153,7 @@ export default class negotiationHub extends React.PureComponent {
             negotiateResult={this.negotiateResult}
             buyingTeam={this.state.buyingTeam}
             result={this.state.result}
-            showTier={this.state.showTier}
+            showPrestige={this.state.showPrestige}
           />
           <Result
             result={this.state.result}

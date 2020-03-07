@@ -26,16 +26,13 @@ export default class Negotiate extends React.PureComponent {
           percentage={this.props.percentage}
           loadingBar={this.props.loadingBar}
         />
-        {this.props.showTeamWarning && (
-          <p>Select a team to begin the negotiation.</p>
-        )}
-        <FinalResult>
+        {/* <FinalResult>
           {this.props.showResult != null && (
             <p className="ResultText">
               {this.props.result ? "Sell Player" : "Keep Player"}
             </p>
           )}
-        </FinalResult>
+        </FinalResult> */}
 
         {this.props.results !== [] && (
           <ul>

@@ -22,19 +22,34 @@
   padding-left: 30px;
   padding-right: 30px;
 }
-.fas:hover {
+
+.header {
+  align-items: stretch;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.687);
+  border-radius: 8px 8px 0px 0px;
+}
+.icon:hover {
   color: rgb(221, 221, 221);
 }
-.nav-email:hover {
-  color: rgb(255, 255, 255);
-  transition: transform 0.2s;
-  transform: scale(1.15);
+.iconMinimise {
+  color: #ffbd44;
+}
+.iconMinimise:hover {
+  color: #d69c2f;
+}
+.macBarText {
+  margin: 0px 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: left;
 }
 
 .ResultContainer {
-  padding-right: 2%;
-  padding-left: 2%;
+  max-width: 98%;
 }
+
 .ResultText {
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -50,4 +65,8 @@
   to {
     opacity: 1;
   }
+}
+
+ul {
+  padding: 0px;
 }
