@@ -9,15 +9,29 @@ const ResultContainer = styled.div`
   }
 `;
 
-const FinalResult = styled.div`
-   {
-    min-width: 120px;
-    height: 75px;
-    display: block;
-  }
-`;
-
 export default class Negotiate extends React.PureComponent {
+  state = {
+    messages: []
+  };
+
+  componentWillReceiveProps(results) {
+    console.log(results);
+    for (let i = 0; i < results.length; i++) {
+      setTimeout(() => {
+        this.state.messages.push(<p key={i}>{results[i]}</p>);
+      }, i * 2000);
+    }
+    console.log(this.state.messages);
+  }
+
+  // revealResults = results => {
+  //   for (let i = 0; i < results.length; i++) {
+  //     setTimeout(() => {
+  //       this.state.messages.push(<p key={i}>{results[i]}</p>);
+  //     }, i * 2000);
+  //   }
+  // };
+
   render() {
     return (
       <ResultContainer>
@@ -26,21 +40,19 @@ export default class Negotiate extends React.PureComponent {
           percentage={this.props.percentage}
           loadingBar={this.props.loadingBar}
         />
-        {/* <FinalResult>
-          {this.props.showResult != null && (
-            <p className="ResultText">
-              {this.props.result ? "Sell Player" : "Keep Player"}
-            </p>
-          )}
-        </FinalResult> */}
-
-        {this.props.results !== [] && (
+        {/* {this.props.results !== [] && (
           <ul>
-            {this.props.results.map(result => (
+            {this.props.results.sort().map(result => (
               <p className="ResultText">{result}</p>
             ))}
           </ul>
-        )}
+        )} */}
+        {/* {this.revealResults(this.props.results.sort())} */}
+
+        {this.state.message &&
+          this.state.messages
+            .sort()
+            .map(message => <p className="ResultText">{message}</p>)}
       </ResultContainer>
     );
   }

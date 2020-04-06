@@ -7,14 +7,17 @@
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
     "emotion": "^10.0.9",
+    "framer-motion": "^1.9.1",
     "gh-pages": "^2.0.1",
     "moment": "^2.24.0",
+    "mongoose": "^5.9.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.9.0",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.4.1",
     "react-transition-group": "^1.2.1",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "validator": "^13.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

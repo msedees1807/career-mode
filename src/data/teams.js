@@ -71,7 +71,7 @@ export const teams = [
   },
   {
     name: "Chelsea",
-    rating: 5,
+    rating: 4.5,
     prestige: 3,
     colors: {
       primary: "#034694",

@@ -3,6 +3,18 @@ import { IoLogoApple, IoIosWifi, IoMdBatteryCharging } from "react-icons/io";
 import moment from "moment";
 
 export default class macBar extends Component {
+  state = {
+    time: null
+  };
+  componentDidMount() {
+    this.interval = setInterval(
+      () => this.setState({ time: moment().format("h:mm:ss") }),
+      100
+    );
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   render() {
     return (
       <span
@@ -11,7 +23,8 @@ export default class macBar extends Component {
           backgroundColor: "#1b1b1bd9",
           width: "100%",
           height: "25px",
-          top: "0px"
+          top: "0px",
+          zIndex: "1000"
         }}
       >
         <div style={{ float: "left", display: "flex" }}>
@@ -41,7 +54,7 @@ export default class macBar extends Component {
                 margin: "4px 5px"
               }}
             />
-            <div className="macBarText">{moment().format("h:mm")}</div>
+            <div className="macBarText">{this.state.time}</div>
           </div>
         </div>
       </span>

@@ -38,7 +38,7 @@ const TeamItem = ({ team, selectBuyingTeam, selected }) => {
       onClick={() => selectBuyingTeam(team)}
     >
       {team.name}
-      <ClubBadge colors={team.colors}/>
+      <ClubBadge colors={team.colors} />
     </TeamItemContainer>
   );
 };
@@ -53,7 +53,7 @@ export default class teamsList extends React.PureComponent {
           padding: 8px;
         `}
       >
-        <p>1. Select bidding team.</p>
+        <p>1. Select bidding team. </p>
         <CardGrid>
           {teams.map((team, index) => (
             <TeamItem

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
 import styled from "@emotion/styled";
 import { MdZoomOutMap } from "react-icons/md";
 
@@ -26,25 +25,11 @@ const MinimisedHub = styled.div`
 
 export default class minimisedHub extends Component {
   render() {
-    const hub = (
-      <MinimisedHub onClick={this.props.minimiseHub}>
-        Negotiation Hub
-        <MdZoomOutMap
-          style={{
-            marginLeft: "15px"
-          }}
-        />
-      </MinimisedHub>
-    );
-
     return (
-      <CSSTransitionGroup
-        transitionName="example"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
-      >
-        {hub}
-      </CSSTransitionGroup>
+          <MinimisedHub onClick={this.props.minimiseHub}>
+            Negotiation Hub
+            <MdZoomOutMap style={{ marginLeft: "15px" }} />
+          </MinimisedHub>
     );
   }
 }

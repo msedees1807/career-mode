@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
-import MacBar from "./components/macBar"
+import MacBar from "./components/macBar";
 import NegotiationHub from "./components/negotiationhub";
 import MinimisedHub from "./components/minimisedHub";
 import { Global, css } from "@emotion/core";
+import { motion, AnimatePresence } from "framer-motion";
 
 const content = {
   width: "90%",
+  maxWidth: "1400px",
   backgroundColor: "rgba(1, 1, 2, 0.72)",
   borderRadius: "8px",
   paddingBottom: "5%",
@@ -48,7 +50,6 @@ export default class App extends React.Component {
     this.setState({
       hubMinimised: !this.state.hubMinimised
     });
-    console.log(this.state.hubMinimised);
   };
 
   render() {
@@ -56,15 +57,29 @@ export default class App extends React.Component {
       <>
         <GlobalStlyes />
         <div className="App">
-          <MacBar/>
+          <MacBar />
           {!this.state.hubMinimised && (
-            <div style={content}>
+            <motion.div
+              drag
+              dragElastic={0}
+              dragMomentum={false}
+              style={content}
+            >
               <NegotiationHub minimiseHub={this.minimiseHub} />
-            </div>
+            </motion.div>
           )}
-          {this.state.hubMinimised && (
-            <MinimisedHub minimiseHub={this.minimiseHub} />
-          )}
+          <AnimatePresence>
+            {this.state.hubMinimised && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <MinimisedHub minimiseHub={this.minimiseHub} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </>
     );

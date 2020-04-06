@@ -136,8 +136,6 @@ export default class negotiationHub extends React.PureComponent {
               <MdEmail className="icon" onClick={this.handleEmailOpenClose} />
             </h5>
           </div>
-          <div style={{ flexGrow: 1, marginRight: "20px" }}>
-          </div>
         </div>
 
         {this.state.showEmail && (

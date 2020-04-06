@@ -36,15 +36,19 @@ export default class Negotiate extends React.PureComponent {
         <NegotiateButton
           disabled={this.props.buyingTeam.name === ""}
           className="NegotiateButton"
-          onClick={() => {this.props.negotiateResult();}}
+          onClick={() => {
+            this.props.negotiateResult();
+          }}
         >
           NEGOTIATE
         </NegotiateButton>
         {this.props.showPrestige && (
           <p>{this.props.buyingTeam.name} have placed a bid.</p>
         )}
-        <Prestige prestige={this.props.buyingTeam.prestige}/>
-        {this.props.showPrestige && <Stars stars={this.props.buyingTeam.rating} />}
+        <Prestige prestige={this.props.buyingTeam.prestige} />
+        {this.props.showPrestige && (
+          <Stars stars={this.props.buyingTeam.rating} />
+        )}
       </div>
     );
   }
