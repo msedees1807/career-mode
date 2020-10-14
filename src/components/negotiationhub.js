@@ -12,7 +12,7 @@ import {
   MdArrowDropDownCircle,
   MdHelp,
   MdEmail,
-  MdBatteryChargingFull
+  MdBatteryChargingFull,
 } from "react-icons/md";
 import { teams } from "../data/teams";
 import styles from "../App.css";
@@ -25,8 +25,8 @@ const Container = styled.div({
   display: "flex",
   flexDirection: "column",
   [BREAKPOINTS.medium]: {
-    display: "grid"
-  }
+    display: "grid",
+  },
 });
 
 export default class negotiationHub extends React.PureComponent {
@@ -40,7 +40,7 @@ export default class negotiationHub extends React.PureComponent {
     showPrestige: false,
     showTeamWarning: true,
     percentage: 0,
-    test: true
+    test: true,
   };
 
   handleEmailOpenClose = () => {
@@ -55,8 +55,7 @@ export default class negotiationHub extends React.PureComponent {
     }, 10);
   };
 
-  calculateResult = rounds => {
-    
+  calculateResult = (rounds) => {
     let results = [];
 
     for (let i = 0; i < rounds; i++) {
@@ -68,7 +67,7 @@ export default class negotiationHub extends React.PureComponent {
       results = results.concat(result);
       this.setState({
         showResult: true,
-        results: results
+        results: results,
       });
     }
   };
@@ -82,21 +81,21 @@ export default class negotiationHub extends React.PureComponent {
     // 3. added result to array
 
     this.setState({
-      percentage: 0
+      percentage: 0,
     });
 
     this.calculateResult(negotiationRounds);
     this.loadingBar();
   };
 
-  selectBuyingTeam = buyingTeam => {
+  selectBuyingTeam = (buyingTeam) => {
     this.setState({
       buyingTeam,
       results: [],
       showResult: null,
       showPrestige: true,
       showTeamWarning: false,
-      percentage: 0
+      percentage: 0,
     });
   };
 
@@ -111,7 +110,7 @@ export default class negotiationHub extends React.PureComponent {
                 padding: "0px",
                 margin: "0px",
                 float: "left",
-                marginTop: "10px"
+                marginTop: "10px",
               }}
             >
               <MdCancel style={{ color: "#FF605C", marginRight: "5px" }} />
