@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import "../App.css";
+import ClubBadge from "./clubBadge";
 import { teams } from "../data/teams";
 import { COLOURS } from "../theme";
 
@@ -22,10 +23,10 @@ const TeamItemContainer = styled.button`
   font-size: 15px;
   transition: transform 0.2s;
   width: 125px;
-  height: 50px;
+  height: 100%;
   margin: 8px;
   &:hover {
-    background-color: #69ff6675;
+    background-color: #4865f39e;
     transform: scale(1.05);
   }
 `;
@@ -37,6 +38,7 @@ const TeamItem = ({ team, selectBuyingTeam, selected }) => {
       onClick={() => selectBuyingTeam(team)}
     >
       {team.name}
+      <ClubBadge colors={team.colors} />
     </TeamItemContainer>
   );
 };
@@ -51,13 +53,13 @@ export default class teamsList extends React.PureComponent {
           padding: 8px;
         `}
       >
-        <h4>1. Select Bidding Team</h4>
+        <p>1. Select bidding team. </p>
         <CardGrid>
-          {teams.map((data, index) => (
+          {teams.map((team, index) => (
             <TeamItem
-              team={data}
+              team={team}
               selectBuyingTeam={this.props.selectBuyingTeam}
-              selected={buyingTeam.name === data.name}
+              selected={buyingTeam.name === team.name}
               key={index}
             />
           ))}

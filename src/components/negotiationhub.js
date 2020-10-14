@@ -2,10 +2,20 @@ import React from "react";
 import styled from "@emotion/styled";
 import { css, jsx } from "@emotion/core";
 import { BREAKPOINTS } from "../theme";
+import Email from "./email";
+import TeamsList from "./teamslist";
 import Negotiate from "./negotiate";
 import Result from "./result";
-import TeamsList from "./teamslist";
+import {
+  MdCancel,
+  MdDoNotDisturbOn,
+  MdArrowDropDownCircle,
+  MdHelp,
+  MdEmail,
+  MdBatteryChargingFull,
+} from "react-icons/md";
 import { teams } from "../data/teams";
+import styles from "../App.css";
 
 const Container = styled.div({
   gridTemplateColumns: "2fr 1fr 1fr",
@@ -15,39 +25,9 @@ const Container = styled.div({
   display: "flex",
   flexDirection: "column",
   [BREAKPOINTS.medium]: {
-    display: "grid"
-  }
+    display: "grid",
+  },
 });
-
-// THIS DOESNT WORK DUE TO THE BREAKPOINT
-// const Container = styled.div`
-//    {
-//     grid-template-columns: 2fr 1fr 1fr;
-//     padding-left: 20px;
-//     padding-right: 20px;
-//     margin: 0px auto;
-//     display: flex;
-//     flex-direction: column;
-//     [breakpoints.medium]: {
-//       display: grid;
-//     }
-//   }
-// `;
-
-const BasicText = styled.p`
-   {
-    text-align: left;
-    font-size: 0.7em;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: #ffffffad;
-    color: #34343c;
-    padding: 20px;
-    border-radius: 8px;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-`;
 
 export default class negotiationHub extends React.PureComponent {
   state = {
@@ -55,15 +35,19 @@ export default class negotiationHub extends React.PureComponent {
     buyingTeam: { name: "" },
     results: [],
     resultMessage: null,
-    showEmail: true,
+    showEmail: false,
     showResult: null,
-    showTier: false,
+    showPrestige: false,
     showTeamWarning: true,
-    percentage: 0
+    percentage: 0,
+    test: true,
+  };
+
+  handleEmailOpenClose = () => {
+    this.setState({ showEmail: !this.state.showEmail });
   };
 
   loadingBar = () => {
-    // console.log("LOADING BAR CALLEDS", this.state);
     setTimeout(() => {
       if (this.state.percentage !== 100) {
         this.setState({ percentage: 100 });
@@ -71,150 +55,92 @@ export default class negotiationHub extends React.PureComponent {
     }, 10);
   };
 
-  calculateResult = () => {
-    setTimeout(() => {
-      this.setState({
-        result: Math.floor(Math.random() * 2) === 0,
-        showResult: true,
-        results: this.state.results.concat(this.state.result)
-      });
-    }, 3500);
-  };
+  calculateResult = (rounds) => {
+    let results = [];
 
-  negotiateResult = () => {
-    const { tier } = this.state.buyingTeam;
-    // const { percentage } = this.state;
-
-    // 1. check tier
-    // 2. based on tier run this function x times
-    // 3. added result to array
-
-    this.setState({
-      percentage: 0
-    });
-
-    this.calculateResult();
-    this.loadingBar();
-
-    for (let i = 0; i < tier; i++) {
-      switch (this.state.result) {
-        default:
-          break;
-        case true:
-          this.setState({
-            result: "Keep Player"
-          });
-          break;
-        case false:
-          this.setState({
-            result: "Sell Player"
-          });
-          break;
-
-        // setTimeout(() => {
-        // this.setState({
-        // result: Math.floor(Math.random() * 2) === 0,
-        //   showResult: true,
-        //   results: this.state.results.concat(this.state.result)
-        // });
-        // }, 3500);
-
-        // this.setState({
-        //   results: this.state.results.concat([this.state.result])
-        // });
+    for (let i = 0; i < rounds; i++) {
+      if (Math.floor(Math.random() * 2) === 0) {
+        var result = "Keep Player";
+      } else {
+        result = "Sell Player";
       }
-      console.log("RESULT HERE:" + this.state.result);
-      console.log("ARRAY HERE: " + this.state.results);
+      results = results.concat(result);
+      this.setState({
+        showResult: true,
+        results: results,
+      });
     }
   };
 
-  selectBuyingTeam = buyingTeam => {
+  negotiateResult = () => {
+    const { prestige } = this.state.buyingTeam;
+    const negotiationRounds = prestige;
+
+    // 1. check prestige
+    // 2. based on prestige run this function x times
+    // 3. added result to array
+
+    this.setState({
+      percentage: 0,
+    });
+
+    this.calculateResult(negotiationRounds);
+    this.loadingBar();
+  };
+
+  selectBuyingTeam = (buyingTeam) => {
     this.setState({
       buyingTeam,
       results: [],
       showResult: null,
-      showTier: true,
+      showPrestige: true,
       showTeamWarning: false,
-      percentage: 0
+      percentage: 0,
     });
   };
 
   render() {
-    // console.log("Negotiation Hub State: (Render Method called) ", this.state);
     return (
       <div>
-        <h2
-          style={{
-            display: "inline"
-          }}
-        >
-          The Negotiation
-        </h2>
-        <i
-          class="far fa-envelope nav-email"
-          style={{
-            fontSize: "1.7rem",
-            padding: "24px",
-            float: "left",
-            display: "initial"
-          }}
-          onClick={() => this.setState({ showEmail: true })}
-        />
-        {this.state.showEmail ? (
-          <BasicText>
-            <i
-              class="far fa-envelope"
+        <div className="header">
+          <div style={{ flexGrow: 0.5, marginLeft: "20px" }}>
+            <h5
               style={{
-                fontSize: "2rem",
-                paddingRight: "10px"
+                fontSize: "1rem",
+                padding: "0px",
+                margin: "0px",
+                float: "left",
+                marginTop: "10px",
               }}
-            />
-            <i
-              class="fas fa-window-close"
-              style={{
-                fontSize: "2rem",
-                float: "right"
-              }}
-              onClick={() => this.setState({ showEmail: false })}
-            />
-            <b>Dear Mr. Manager,</b>
-            <br />
-            <br />
-            As a small club, larger teams will often look to our players when
-            they become successful. If you receive a bid from one of the
-            following teams, you must use the hub to determine whether the bid
-            is successful. We will allow a
-            <b>maximum of 5 players to leave, per season,</b> as a result of
-            these negotiations. We will not stand in the way of our players'
-            dream club.
-            <br />
-            <br />
-            It is our goal to build a sustainable club by capping our spending
-            on players to <b>£25m</b> per purchase and <b>£50,000</b> per week
-            on salaries for each player.
-            <br />
-            <br />
-            As a result of our financial situation, we currently cannot rely on
-            our youth system, therefore all signings must be made from other
-            clubs.
-            <br />
-            <br />
-            In Summary:
-            <br />
-            - We must sell up to 5 key players per season.
-            <br />
-            - Transfers are capped at £25m and salaries at £50,000 per week.
-            <br />
-            - No Youth Academy Prospects
-            <br />
-            - No Free Pre Contract Signings
-            <br />
-            <br />
-            <b>The Board.</b>
-          </BasicText>
-        ) : (
-          ""
+            >
+              <MdCancel style={{ color: "#FF605C", marginRight: "5px" }} />
+              <MdDoNotDisturbOn
+                className="iconMinimise"
+                onClick={this.props.minimiseHub}
+                style={{ marginRight: "5px" }}
+              />
+              <MdArrowDropDownCircle style={{ color: "#00CA4E" }} />
+            </h5>
+          </div>
+          <div style={{ flexGrow: 8, textAlign: "left" }}>
+            <h5>NEGOTIATION HUB</h5>
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <h5>
+              <MdHelp />
+            </h5>
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <h5>
+              <MdEmail className="icon" onClick={this.handleEmailOpenClose} />
+            </h5>
+          </div>
+        </div>
+
+        {this.state.showEmail && (
+          <Email handleEmailOpenClose={this.handleEmailOpenClose} />
         )}
+
         <Container>
           <TeamsList
             selectBuyingTeam={this.selectBuyingTeam}
@@ -224,7 +150,7 @@ export default class negotiationHub extends React.PureComponent {
             negotiateResult={this.negotiateResult}
             buyingTeam={this.state.buyingTeam}
             result={this.state.result}
-            showTier={this.state.showTier}
+            showPrestige={this.state.showPrestige}
           />
           <Result
             result={this.state.result}
