@@ -29,11 +29,7 @@ export default class Negotiate extends React.PureComponent {
           percentage={this.props.percentage}
           loadingBar={this.props.loadingBar}
         />
-        {this.state.messages.map((x) => (
-          <p className="ResultText" key={x + Math.random()}>
-            {x}
-          </p>
-        ))}
+        g
       </ResultContainer>
     );
   }
