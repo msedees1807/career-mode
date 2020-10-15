@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css, jsx } from "@emotion/core";
 import { BREAKPOINTS } from "../theme";
 import Email from "./email";
 import TeamsList from "./teamslist";
@@ -12,10 +11,7 @@ import {
   MdArrowDropDownCircle,
   MdHelp,
   MdEmail,
-  MdBatteryChargingFull,
 } from "react-icons/md";
-import { teams } from "../data/teams";
-import styles from "../App.css";
 
 const Container = styled.div({
   gridTemplateColumns: "2fr 1fr 1fr",
