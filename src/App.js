@@ -12,16 +12,7 @@ const content = {
   backgroundColor: "rgba(1, 1, 2, 0.72)",
   borderRadius: "8px",
   paddingBottom: "5%",
-  marginTop: "70px"
-};
-
-const nav = {
-  backgroundColor: "rgba(205, 209, 224, 0.92)",
-  color: "black",
-  padding: "2%",
-  position: "fixed",
-  width: "100%",
-  top: "0"
+  marginTop: "70px",
 };
 
 const GlobalStlyes = () => (
@@ -42,13 +33,13 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hubMinimised: false
+      hubMinimised: false,
     };
   }
 
   minimiseHub = () => {
     this.setState({
-      hubMinimised: !this.state.hubMinimised
+      hubMinimised: !this.state.hubMinimised,
     });
   };
 

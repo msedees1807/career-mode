@@ -1,21 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { css, jsx } from "@emotion/core";
 import { BREAKPOINTS } from "../theme";
 import Email from "./email";
 import TeamsList from "./teamslist";
 import Negotiate from "./negotiate";
 import Result from "./result";
+import NewResult from "./newResult";
 import {
   MdCancel,
   MdDoNotDisturbOn,
   MdArrowDropDownCircle,
   MdHelp,
   MdEmail,
-  MdBatteryChargingFull,
 } from "react-icons/md";
-import { teams } from "../data/teams";
-import styles from "../App.css";
 
 const Container = styled.div({
   gridTemplateColumns: "2fr 1fr 1fr",
@@ -152,6 +149,7 @@ export default class negotiationHub extends React.PureComponent {
             result={this.state.result}
             showPrestige={this.state.showPrestige}
           />
+          <NewResult/>
           <Result
             result={this.state.result}
             results={this.state.results}
