@@ -5,6 +5,7 @@ import Email from "./email";
 import TeamsList from "./teamslist";
 import Negotiate from "./negotiate";
 import Result from "./result";
+import NewResult from "./newResult";
 import {
   MdCancel,
   MdDoNotDisturbOn,
@@ -148,6 +149,7 @@ export default class negotiationHub extends React.PureComponent {
             result={this.state.result}
             showPrestige={this.state.showPrestige}
           />
+          <NewResult/>
           <Result
             result={this.state.result}
             results={this.state.results}
