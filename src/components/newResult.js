@@ -20,7 +20,7 @@ export default function NewResult() {
             <button onClick={()=> updateMessage(3)}>Test</button>
             <button onClick={()=> clearMessage()}>Clear</button>
             {messages && messages.map((x)=>(
-                <p>{x}</p>
+                <p>{x}: test</p>
             ))}
         </div>
     )
