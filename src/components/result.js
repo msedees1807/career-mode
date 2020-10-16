@@ -29,7 +29,6 @@ export default class Negotiate extends React.PureComponent {
           percentage={this.props.percentage}
           loadingBar={this.props.loadingBar}
         />
-        g
       </ResultContainer>
     );
   }
