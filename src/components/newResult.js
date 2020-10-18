@@ -15,6 +15,16 @@ export default function NewResult() {
         updateRounds(4)
     }
 
+    function calculateVerdict(){
+    if(messages.reduce((count, result) => result === "Talks progress" && count + 1) > 0){
+         return "The player will be sold"
+        }
+        else {
+         return "Talks failed" 
+        }
+    }
+    
+
     return (
         <div>
             {rounds > 0 ? <button onClick={()=> updateMessage(3)}>Next offer</button> :
@@ -23,7 +33,13 @@ export default function NewResult() {
             {messages && messages.map((x)=>(
                 <p>{x}</p>
             ))}
-            {rounds === 0 && <>Talks have concluded. Verdict: {messages.reduce((count, result) => result ==="Talks progress" && count + 1) > messages.length ? "The player will be sold" : "Talks failed"}</>}
+            {/* {rounds === 0 && calculateVerdict() <>Talks have concluded. Verdict: {messages.reduce((count, result) => result ==="Talks progress" && count + 1) > messages.length ? "The player will be sold" : "Talks failed"}</>} */}
+        
+            
+            {rounds === 0 && <>Talks have concluded.<br/> Verdict:</>}
+            {rounds === 0 && calculateVerdict()}
+
+        
         </div>
     )
 }
