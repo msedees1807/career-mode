@@ -5,19 +5,20 @@ import {news} from "../data/news"
 export default function NewResult() {
 
     const TextMessage = styled.p`
-    color: black;
-    background-color: white;
-    border-radius: 30px;
-    font-size: 16px;
+    color: #151515;
+    background-color: #e2e2e4;
+    border-radius: 15px;
+    font-size: 14px;
     text-align: left;
-    padding: 10px;
+    padding: 12px;
+    font-family: Helvetica Neue;
     `
 
     const [messages, newMessage] = useState([]);
     const [rounds, updateRounds] = useState(4);
 
     function updateMessage(x){
-        newMessage(messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress" : news[1].news +  "Talks move backwards"))
+        newMessage(messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress." : news[1].news +  "Talks move backwards."))
      updateRounds(rounds - 1)
     }
 
@@ -41,6 +42,7 @@ export default function NewResult() {
             {rounds > 0 ? <button onClick={()=> updateMessage(3)}>Next offer</button> :
             <button disabled>Next offer</button>}
             <button onClick={()=> clearMessage()}>Clear</button>
+            <TextMessage style={{ "color": "white", "background-color": "#0b81fd"}}>Any updates on the transfer?</TextMessage>
             {messages && messages.map((x)=>(
                 <TextMessage>{x}</TextMessage>
             ))}

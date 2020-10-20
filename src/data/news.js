@@ -7,7 +7,7 @@ export const news = [
     },
     { 
         id: 2,
-        news: "The CEO has been delayed for discussions by the Coronavirus.",
+        news: "The CEO has been delayed by the Coronavirus.",
         step: 1,
         outcome: "keep"
     },
