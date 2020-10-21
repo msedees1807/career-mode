@@ -28,5 +28,17 @@ export const news = [
         news: "A starting offer has been made. The board look pleased.",
         step: 2,
         outcome: "sell"
+    },
+    { 
+        id: 6,
+        news: "The player's agent has just been in touch, the player wants more money.",
+        step: 2,
+        outcome: "keep"
+    },
+    { 
+        id: 7,
+        news: "The offer has been increased, they're offering a future friendly to help with the funds.",
+        step: 2,
+        outcome: "sell"
     }
 ]
