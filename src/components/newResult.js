@@ -16,24 +16,21 @@ export default function NewResult() {
 
     const [messages, newMessage] = useState([]);
     const [rounds, updateRounds] = useState(4);
+    const playerSoldMessage = "A deal has been agreed. The player will be sold.";
+    const playerStayingMessage = "Talks failed. The player will remain at the club." 
 
-    function updateMessage(x){
+    function updateMessage(){
         newMessage(messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress." : news[1].news +  "Talks move backwards."))
-     updateRounds(rounds - 1)
+        updateRounds(rounds - 1)
     }
 
-    function clearMessage(){
+    function clearMessages(){
         newMessage([])
         updateRounds(4)
     }
 
     function calculateVerdict(){
-    if(messages.reduce((count, result) => result === "Talks progress" && count + 1) > 0){
-         return "A deal has been agreed. The player will be sold."
-        }
-        else {
-         return "Talks failed. The player will remain at the club." 
-        }
+        return messages.reduce((count, result) => result === "Talks progress" && count + 1) > 0 ? playerSoldMessage : playerStayingMessage;
     }
     
 
@@ -41,7 +38,7 @@ export default function NewResult() {
         <div>
             {rounds > 0 ? <button onClick={()=> updateMessage(3)}>Next offer</button> :
             <button disabled>Next offer</button>}
-            <button onClick={()=> clearMessage()}>Clear</button>
+            <button onClick={()=> clearMessages()}>Clear</button>
             <TextMessage style={{ "color": "white", "background-color": "#0b81fd"}}>Any updates on the transfer?</TextMessage>
             {messages && messages.map((x)=>(
                 <TextMessage>{x}</TextMessage>
