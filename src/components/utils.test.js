@@ -3,10 +3,10 @@ import { playerSoldMessage, playerStayingMessage } from './../data/messages';
 
 test('Calculate result with all sold-supporting events gives sold result', () => {
     const events = [
-        "Test message talks progress",
-        "Message stating talks progress",
+        "Test message Talks progress",
+        "Message stating Talks progress",
         "Talks progress",
-        "Test talks progress"
+        "Test Talks progress"
     ];
 
     expect(calculateNegotiationResult(events)).toBe(playerSoldMessage);
