@@ -39,3 +39,13 @@ test('Calculate result when given 1 progress events', ()=>{
     ];
     expect(calculateNegotiationResult(events)).toBe(playerStayingMessage);
 })
+
+test('Calculate result when given 0 progress events', ()=>{
+    const events = [
+        "Message",
+        "Message",
+        "Message",
+        "Message"
+    ];
+    expect(calculateNegotiationResult(events)).toBe(playerStayingMessage);
+})

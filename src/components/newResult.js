@@ -12,7 +12,7 @@ export default function NewResult() {
     font-size: 14px;
     text-align: left;
     padding: 12px;
-    font-family: Helvetica Neue;
+    font-family: Arial, Helvetica, sans-serif;
     `
 
     const [messages, newMessage] = useState([]);
