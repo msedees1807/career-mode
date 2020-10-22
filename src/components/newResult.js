@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
 import {news} from "../data/news"
+import { calculateNegotiationResult } from './utils';
 
 export default function NewResult() {
 
@@ -16,8 +17,6 @@ export default function NewResult() {
 
     const [messages, newMessage] = useState([]);
     const [rounds, updateRounds] = useState(4);
-    const playerSoldMessage = "A deal has been agreed. The player will be sold.";
-    const playerStayingMessage = "Talks failed. The player will remain at the club.";
 
     function updateMessage(){
         newMessage(messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress." : news[1].news +  "Talks move backwards."))
@@ -28,12 +27,7 @@ export default function NewResult() {
         newMessage([])
         updateRounds(4)
     }
-
-    function calculateVerdict(){
-        return messages.reduce((count, result) => result.includes("Talks progress") && count + 1, 0) >= messages.length / 2 ? playerSoldMessage : playerStayingMessage;
-    }
     
-
     return (
         <div>
             {rounds > 0 ? <button onClick={()=> updateMessage(3)}>Next offer</button> :
@@ -44,7 +38,7 @@ export default function NewResult() {
                 <TextMessage>{x}</TextMessage>
             ))}
         
-            {rounds === 0 && "Verdict:" && calculateVerdict()}
+            {rounds === 0 && "Verdict:" && calculateNegotiationResult(messages)}
         
         </div>
     )
