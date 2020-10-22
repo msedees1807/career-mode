@@ -17,7 +17,7 @@ export default function NewResult() {
     const [messages, newMessage] = useState([]);
     const [rounds, updateRounds] = useState(4);
     const playerSoldMessage = "A deal has been agreed. The player will be sold.";
-    const playerStayingMessage = "Talks failed. The player will remain at the club." 
+    const playerStayingMessage = "Talks failed. The player will remain at the club.";
 
     function updateMessage(){
         newMessage(messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress." : news[1].news +  "Talks move backwards."))
@@ -30,7 +30,7 @@ export default function NewResult() {
     }
 
     function calculateVerdict(){
-        return messages.reduce((count, result) => result === "Talks progress" && count + 1) > 0 ? playerSoldMessage : playerStayingMessage;
+        return messages.reduce((count, result) => result.includes("Talks progress") && count + 1) >= messages.length / 2 ? playerSoldMessage : playerStayingMessage;
     }
     
 
