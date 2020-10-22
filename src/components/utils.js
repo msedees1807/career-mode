@@ -5,7 +5,7 @@ import { playerSoldMessage, playerStayingMessage } from "../data/messages";
  * @param {string[]} events - the list of event messages to calculate a result for.
  */
 export function calculateNegotiationResult(events) {
-    return events.reduce((count, result) => result === "Talks progress" && count + 1) > 0 ? playerSoldMessage : playerStayingMessage;
+    return events.filter((message) => message.includes("Talks progress")).length >= 2 ? playerSoldMessage : playerStayingMessage;
 }
 
 export default {calculateNegotiationResult}
