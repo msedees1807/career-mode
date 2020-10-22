@@ -30,7 +30,7 @@ export default function NewResult() {
     }
 
     function calculateVerdict(){
-        return messages.reduce((count, result) => result.includes("Talks progress") && count + 1) >= messages.length / 2 ? playerSoldMessage : playerStayingMessage;
+        return messages.reduce((count, result) => result.includes("Talks progress") && count + 1, 0) >= messages.length / 2 ? playerSoldMessage : playerStayingMessage;
     }
     
 
