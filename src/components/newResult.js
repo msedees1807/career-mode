@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
+import { playerSoldMessage, playerStayingMessage } from '../data/messages';
 import {news} from "../data/news"
 
 export default function NewResult() {
@@ -16,8 +17,6 @@ export default function NewResult() {
 
     const [messages, newMessage] = useState([]);
     const [rounds, updateRounds] = useState(4);
-    const playerSoldMessage = "A deal has been agreed. The player will be sold.";
-    const playerStayingMessage = "Talks failed. The player will remain at the club." 
 
     function updateMessage(){
         newMessage(messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress." : news[1].news +  "Talks move backwards."))
