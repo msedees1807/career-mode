@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components/macro";
-import { playerSoldMessage, playerStayingMessage } from '../data/messages';
 import {news} from "../data/news"
+import { calculateNegotiationResult } from './utils';
 
 export default function NewResult() {
 
@@ -27,12 +27,7 @@ export default function NewResult() {
         newMessage([])
         updateRounds(4)
     }
-
-    function calculateVerdict(){
-        return messages.reduce((count, result) => result === "Talks progress" && count + 1) > 0 ? playerSoldMessage : playerStayingMessage;
-    }
     
-
     return (
         <div>
             {rounds > 0 ? <button onClick={()=> updateMessage(3)}>Next offer</button> :
@@ -43,7 +38,7 @@ export default function NewResult() {
                 <TextMessage>{x}</TextMessage>
             ))}
         
-            {rounds === 0 && "Verdict:" && calculateVerdict()}
+            {rounds === 0 && "Verdict:" && calculateNegotiationResult(messages)}
         
         </div>
     )
