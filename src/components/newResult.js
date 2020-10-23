@@ -24,11 +24,8 @@ export default class NewResult extends React.PureComponent {
         this.state.messages.concat(Math.floor(Math.random() * 2) === 0 ? news[0].news + " Talks progress." : news[1].news +  "Talks move backwards.")
         )
 
-    updateMessage = () => (
-        this.newMessage(this.state.messages.concat(
-            Math.floor(Math.random() * 2) === 0 ? 
-            news[0].news + " Talks progress." : 
-            news[1].news +  "Talks move backwards.")) +
+    nextOffer = () => (
+        this.newMessage() +
         this.props.updateRounds()
     )
     
@@ -39,7 +36,7 @@ export default class NewResult extends React.PureComponent {
     return (
         <div>
             {roundsNEW && roundsNEW}
-            {roundsNEW > 0 ? <button onClick={()=> this.updateMessage()}>Next offer</button> :
+            {roundsNEW > 0 ? <button onClick={()=> this.nextOffer()}>Next offer</button> :
             <button disabled>Next offer</button>}
             <button onClick={()=> this.props.clearMessages()}>Clear</button>
             <TextMessage style={{ "color": "white", "background-color": "#0b81fd"}}>Any updates on the transfer?</TextMessage>
