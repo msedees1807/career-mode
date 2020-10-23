@@ -30,6 +30,7 @@ export default class negotiationHub extends React.PureComponent {
   state = {
     userTeam: null,
     buyingTeam: { name: "" },
+    roundsNEW: 0,
     results: [],
     resultMessage: null,
     showEmail: false,
@@ -89,12 +90,27 @@ export default class negotiationHub extends React.PureComponent {
     this.setState({
       buyingTeam,
       results: [],
+      roundsNEW: Math.floor((buyingTeam.prestige + buyingTeam.rating) / 2),
       showResult: null,
       showPrestige: true,
       showTeamWarning: false,
       percentage: 0,
     });
   };
+
+  updateRounds = () => {
+    console.log("Rounds - 1")
+    this.setState({
+      roundsNEW: this.roundsNEW - 1
+    })
+  }
+
+  clearMessages = () => {
+    console.log("Clear rounds, therefore 0 messages")
+    this.setState({
+      roundsNEW: 0
+    })
+  }
 
   render() {
     return (
@@ -149,7 +165,7 @@ export default class negotiationHub extends React.PureComponent {
             result={this.state.result}
             showPrestige={this.state.showPrestige}
           />
-          <NewResult/>
+          <NewResult roundsNEW={this.state.roundsNEW} updateRounds={this.updateRounds} clearMessages={this.clearMessages}/>
           <Result
             result={this.state.result}
             results={this.state.results}
