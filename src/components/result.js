@@ -18,7 +18,6 @@ export default class Negotiate extends React.PureComponent {
     for (let i = 0; i < results.results.length; i++) {
       this.state.messages.push(results.results[i]);
     }
-    console.log(this.state.messages);
   }
 
   render() {
