@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
-import "../App.css";
+import "../../App.css";
 import ClubBadge from "./clubBadge";
-import { teams } from "../data/teams";
-import { COLOURS } from "../theme";
+import { teams } from "../../data/teams";
+import { COLOURS } from "../../theme";
 
 const CardGrid = styled.div`
    {

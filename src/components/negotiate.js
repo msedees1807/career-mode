@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
-import Prestige from "./prestige";
-import Stars from "./stars";
+import Prestige from "./clubs/prestige";
+import Stars from "./clubs/stars";
 import "../App.css";
 
 const NegotiateButton = styled.button`

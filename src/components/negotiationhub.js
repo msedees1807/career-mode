@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { BREAKPOINTS } from "../theme";
-import Email from "./email";
-import TeamsList from "./teamslist";
+import Email from "./macOS/email";
+import TeamsList from "./clubs/teamslist";
 import Negotiate from "./negotiate";
 import Result from "./result";
 import NewResult from "./newResult";
@@ -99,18 +99,18 @@ export default class negotiationHub extends React.PureComponent {
   };
 
   updateRounds = () => {
-    console.log("Rounds - 1")
+    console.log("Rounds - 1");
     this.setState({
-      roundsNEW: this.roundsNEW - 1
-    })
-  }
+      roundsNEW: this.roundsNEW - 1,
+    });
+  };
 
   clearMessages = () => {
-    console.log("Clear rounds, therefore 0 messages")
+    console.log("Clear rounds, therefore 0 messages");
     this.setState({
-      roundsNEW: 0
-    })
-  }
+      roundsNEW: 0,
+    });
+  };
 
   render() {
     return (
@@ -165,7 +165,11 @@ export default class negotiationHub extends React.PureComponent {
             result={this.state.result}
             showPrestige={this.state.showPrestige}
           />
-          <NewResult roundsNEW={this.state.roundsNEW} updateRounds={this.updateRounds} clearMessages={this.clearMessages}/>
+          <NewResult
+            roundsNEW={this.state.roundsNEW}
+            updateRounds={this.updateRounds}
+            clearMessages={this.clearMessages}
+          />
           <Result
             result={this.state.result}
             results={this.state.results}

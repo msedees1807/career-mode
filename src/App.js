@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import MacBar from "./components/macBar";
+import MacBar from "./components/macOS/macBar";
 import NegotiationHub from "./components/negotiationhub";
-import MinimisedHub from "./components/minimisedHub";
+import MinimisedHub from "./components/macOS/minimisedHub";
 import { Global, css } from "@emotion/core";
 import { motion, AnimatePresence } from "framer-motion";
+import NewHub from "./components/newHub";
 
 const content = {
   width: "90%",
@@ -29,50 +30,37 @@ const GlobalStlyes = () => (
   />
 );
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hubMinimised: false,
-    };
-  }
+export default function App() {
+  const [hubMinimised, setHubMinimised] = useState(false);
 
-  minimiseHub = () => {
-    this.setState({
-      hubMinimised: !this.state.hubMinimised,
-    });
-  };
+  const minimiseHub = () => setHubMinimised(!hubMinimised);
 
-  render() {
-    return (
-      <>
-        <GlobalStlyes />
-        <div className="App">
-          <MacBar />
-          {!this.state.hubMinimised && (
+  return (
+    <>
+      <GlobalStlyes />
+      <div className="App">
+        <MacBar />
+
+        {!hubMinimised && (
+          <motion.div drag dragElastic={0} dragMomentum={false} style={content}>
+            {/* <NegotiationHub minimiseHub={minimiseHub} /> */}
+            <NewHub />
+          </motion.div>
+        )}
+
+        <AnimatePresence>
+          {hubMinimised && (
             <motion.div
-              drag
-              dragElastic={0}
-              dragMomentum={false}
-              style={content}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
-              <NegotiationHub minimiseHub={this.minimiseHub} />
+              <MinimisedHub minimiseHub={minimiseHub} />
             </motion.div>
           )}
-          <AnimatePresence>
-            {this.state.hubMinimised && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <MinimisedHub minimiseHub={this.minimiseHub} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </>
-    );
-  }
+        </AnimatePresence>
+      </div>
+    </>
+  );
 }
