@@ -11,7 +11,7 @@
     "express": "^4.17.1",
     "framer-motion": "^1.9.1",
     "gh-pages": "^2.0.1",
-    "mocha": "^7.1.1",
+    "mocha": "^10.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.9.7",
     "react": "^16.8.6",
